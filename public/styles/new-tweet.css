@@ -10,7 +10,7 @@ textarea {
   padding: 10px;
 }
 
-span.counter {
+output {
   color: #244751;
   float: right;
 }
@@ -19,4 +19,8 @@ section h2 {
   border-bottom: 2px solid #244751;
   padding-bottom: 4px;
   margin-top: 10px;
+}
+
+.overlimit {
+ color: red;
 }
