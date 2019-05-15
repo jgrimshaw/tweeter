@@ -81,7 +81,15 @@ function renderTweets(data){
   }
 }
 
-
+// AJAX POST request
+$("tweet-form").submit(function( event ) {
+  event.preventDefault();
+    let newTweet = $(this).serialize();
+    $.post('/tweets', newTweet, function (data) {
+      $('.tweets-container').prepend(createTweetElement(data));
+      console.log('where is this going?')
+    });
+});
 
 
 
