@@ -46,8 +46,6 @@
 //   }
 // ];
 
-$(function() {
-
 
 function createTweetElement (data){
     let username = data.user.name;
@@ -82,95 +80,25 @@ function renderTweets(data){
   }
 }
 
-$(".tweet-form").on("submit",function(event) {
-  event.preventDefault();
-  const $form = $(".tweet-form")
-  const data = $form.serialize();
-  console.log("tweet:", data);
-
-  $.post("/tweets", data)
-  .then((tweet) => {
-    console.log("tweeting from server!!")
-
-    const elm = createTweetElement(tweet);
-    $(".tweet-container").prepend(elm);
-    this.reset()
-  })
-  .catch((err) => {
-    console.log(err);
-    alert("Error: please try again.")
-  });
-
-});
-
-
-
-
-function loadTweets() {
-  $.get('/tweets/'), function (tweets) {
-    console.log(tweets);
-
-    for(let content in tweets){
-      console.log(tweets[content]);
-      let elm = createTweetElement(tweets[content]);
-      $(".tweet-container").append(elm)
-    }
-  }
-}
-
-loadTweets();
-
-});
-//==========================================
-// // Attach a submit handler to the form
-// $( ".tweet-form" ).submit(function( event ) {
-//   event.preventDefault();
-//   // Get some values from elements on the page:
-//   let newTweet = $(this).serialize()
-
-//   // Send the data using post
-//   $.post('/tweets', newTweet, function(data){
-//     $('.tweets-container').prepend(createTweetElement(data));
-//       console.log('post !!!!!!!!!!!!')
-//   } );
-
-
-//   //Ajax Function to send a get request
-
-// $(function() {
-//   var $button = $('#load-more-posts');
-//   $button.on('click', function () {
-//     console.log('Button clicked, performing ajax call...');
-//     $.ajax('more-posts.html', { method: 'GET' })
-//     .then(function (morePostsHtml) {
-//       console.log('Success: ', morePostsHtml);
-//       $button.replaceWith(morePostsHtml);
-//     });
-//   });
-// });
-// //   $.ajax({
-// //     type: "GET",
-// //     url: "/tweets",
-// //     dataType:"json"
-// //     success: function(response){
-// //         //if request if made successfully then the response represent the data
-// // console.log('get !!!!!!!!!')
-// //         $( "#result" ).empty().append( response );
-// //     }
-// //   });
-
-// // });
-
-// //=========================================
-// // AJAX POST request
-// // $(".tweet-form").submit(function( event ) {
-// //   event.preventDefault();
-// //     let newTweet = $(this).serialize();
-// //     $.post('/tweets', newTweet, function (data) {
-// //       $('.tweets-container').prepend(createTweetElement(data));
-// //       console.log('where is this going?')
-// //     });
-// // });
-
-// // AJAX GET request
-
+$(document).ready($(function() {
+    let $form = $('.tweet-form');
+    $form.on('submit', function (event) {
+        event.preventDefault();
+        let tweetText = $('textarea').val();
+        console.log(tweetText.length);
+        if( tweetText.length > 140 || tweetText.length <= 0){
+            alert("Your tweet is too long or too short!");
+        } else {
+            console.log('submiting tweet...');
+            $.getJSON({
+                url: 'http://localhost:8080/tweets',
+                method: 'GET',
+                data: {get_param: 'value'},
+                success: function (data) {
+                    renderTweets(data);
+                    console.log('Success!');
+                }
+            })
+        }
+    });
+}))
