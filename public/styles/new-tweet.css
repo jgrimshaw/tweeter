@@ -30,14 +30,15 @@ output {
 /* tweets */
 
 
-article.tw {
+.tw-article {
   padding: 0px;
   border-radius: 5px;
   border: 1px solid lightgray;
   margin-top: 20px;
+  opacity: 0.75;
 }
 
-header.tw {
+.tw-header {
     display: flex;
 
     align-items: left;
@@ -47,23 +48,26 @@ header.tw {
     padding: 10px;
     color: gray;
 }
-
-h2.tw#username {
-  margin-top: 6px;
-  padding-left: 10px;
+.tw-h2{
+  margin-top: 0;
+}
+.tw-name{
+  margin-top: .2em;
+}
+.tw-header-items {
   color: gray;
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+
 }
 
-span.tw#name {
-  float: right;
-}
-
-p.tw {
+.tw-p {
   padding: 10px;
 }
 
-footer.tw {
+.tw-footer {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid lightgray;
@@ -72,15 +76,15 @@ footer.tw {
     margin: 0;
 }
 
-div.tw .icons{
+.icons{
   color: teal;
-
   font-size: 1.5em;
-
-
 }
 
 
+.tw-article:hover {
+  opacity: 1;
+}
 
 
 
