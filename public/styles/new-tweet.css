@@ -28,8 +28,6 @@ output {
 }
 
 /* tweets */
-
-
 .tw-article {
   padding: 0px;
   border-radius: 5px;
@@ -39,29 +37,23 @@ output {
 }
 
 .tw-header {
-    display: flex;
-
-    align-items: left;
-    background-color:#eee;
-    margin: 0;
-    height: 20%;
-    padding: 10px;
-    color: gray;
+  display: flex;
+  align-items: flex-start;
+  background-color:#eee;
+  margin: 0;
+  height: 20%;
+  padding: 10px;
+  color: gray;
+  border-radius: 5px 5px 0px 0px;
 }
+
 .tw-h2{
-  margin-top: 0;
+  margin: 0;
   padding-left: 10px;
 }
+
 .tw-name{
-  margin-top: .2em;
-}
-.tw-header-items {
-  color: gray;
-  display: flex;
-  justify-content: space-between;
-
-  width: 100%;
-
+  margin-left: auto;
 }
 
 .tw-p {
@@ -69,19 +61,18 @@ output {
 }
 
 .tw-footer {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid lightgray;
-    font-size: 0.8em;
-    padding: 10px;
-    margin: 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  font-size: 0.8em;
+  padding: 10px;
+  margin: 0;
 }
 
 .icons{
   color: teal;
   font-size: 1.5em;
 }
-
 
 .tw-article:hover {
   opacity: 1;

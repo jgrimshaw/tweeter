@@ -3,19 +3,17 @@
   <head>
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
-
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-
+     <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
   </head>
 
@@ -30,9 +28,9 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <!-- new tweet -->
-      <section class="new-tweet">
+     <section class="new-tweet">
        <h2>Compose Tweet</h2>
-       <form action="/tweets" method="POST">
+       <form class="tweet-form" action="/tweets" method="POST">
          <textarea name="text" placeholder="What are you humming about?"></textarea>
          <input type="submit" value="Tweet">
          <output>140</output>
@@ -41,29 +39,9 @@
       <br>
 
      <!-- tweets displaying  -->
-<section id="container">
-          <article class="tw-article">
-            <header class="tw-header">
-               <img class="tw-avatar" src="https://cdn1.iconfinder.com/data/icons/rounded-black-basic-ui/139/Minimize-RoundedBlack-512.png" width="70" height="70" align="left">
+<section class="tweets-container"></section>
 
-               <div class="tw-header-items">
-               <h2 class="tw-h2" id="username">firstname lastname</h2>
-               <span class="tw-name" id="name">@name</span>
-               </div>
 
-            </header>
-              <p class="tw-p">Tweet content goes here!</p>
-            <footer class="tw-footer">
-              <div class="tw-footer-text">6 days ago</div>
-              <div class="tw-icons">
-                <span class="icons"><i class="fab fa-font-awesome-flag"></i>&nbsp<i class="fas fa-sync-alt"></i>&nbsp<i class="fas fa-heart">&nbsp</i>
-                </span>
-                <div>
-            </footer>
-          </article>
-</section>
- <!-- External JS -->
-    <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
     <!-- Character counter JS -->
