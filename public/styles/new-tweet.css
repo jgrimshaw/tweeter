@@ -1,8 +1,16 @@
+
+/* new tweets */
 section.new-tweet {
   background-color: #eee;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid lightgray;
+}
+
+section.new-tweet h2 {
+  border-bottom: 2px solid #244751;
+  padding-bottom: 4px;
+  margin-top: 10px;
 }
 
 textarea {
@@ -15,12 +23,67 @@ output {
   float: right;
 }
 
-section h2 {
-  border-bottom: 2px solid #244751;
-  padding-bottom: 4px;
-  margin-top: 10px;
-}
-
 .overlimit {
  color: red;
 }
+
+/* tweets */
+
+
+article.tw {
+  padding: 0px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  margin-top: 20px;
+}
+
+header.tw {
+    display: flex;
+
+    align-items: left;
+    background-color:#eee;
+    margin: 0;
+    height: 20%;
+    padding: 10px;
+    color: gray;
+}
+
+h2.tw#username {
+  margin-top: 6px;
+  padding-left: 10px;
+  color: gray;
+  text-align: left;
+}
+
+span.tw#name {
+  float: right;
+}
+
+p.tw {
+  padding: 10px;
+}
+
+footer.tw {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid lightgray;
+    font-size: 0.8em;
+    padding: 10px;
+    margin: 0;
+}
+
+div.tw .icons{
+  color: teal;
+
+  font-size: 1.5em;
+
+
+}
+
+
+
+
+
+
+
+
