@@ -22,3 +22,15 @@ line-height: 200%;
 padding: 10px;
 
 }
+
+.compose-button {
+  margin-top: 15px;
+    float:right;
+    color: #00a087;
+    border-radius: 2px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: black solid 1px;
+    background-color: white;
+
+}
