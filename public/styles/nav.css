@@ -34,3 +34,8 @@ padding: 10px;
     background-color: white;
 
 }
+
+.compose-button:hover {
+    background-color: #9cd6c9;
+    color: black;
+}

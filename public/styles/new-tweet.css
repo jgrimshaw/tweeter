@@ -18,6 +18,14 @@ textarea {
   padding: 10px;
 }
 
+textarea:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
 output {
   color: #244751;
   float: right;

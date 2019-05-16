@@ -13,16 +13,16 @@ function createTweetElement (data){
     let time = daysAgo(data.created_at);
 
     let $tweet = `
-      <article class="tw-article">
-        <header class="tw-header">
-          <img class="tw-avatar" src=${avatar}>
-          <h2 class="tw-h2">${username}</h2>
-          <span class="tw-name">${userId}</span>
+      <article class='tw-article'>
+        <header class='tw-header'>
+          <img class='tw-avatar' src=${avatar}>
+          <h2 class='tw-h2'>${username}</h2>
+          <span class='tw-name'>${userId}</span>
         </header>
-            <p class="tw-p">${tweetText}</p>
-        <footer class="tw-footer">
+            <p class='tw-p'>${tweetText}</p>
+        <footer class='tw-footer'>
           <time>${time}</time>
-          <span class="icons"><i class="fas fa-flag">&nbsp</i><i class="fas fa-retweet">&nbsp</i><i class="fas fa-heart"></i><div>
+          <span class='icons'><i class='fas fa-flag'>&nbsp</i><i class='fas fa-retweet'>&nbsp</i><i class='fas fa-heart'></i><div>
         </footer>
       </article>
   `;
@@ -32,7 +32,7 @@ function createTweetElement (data){
 function renderTweets(data){
   for(let i = 0; i < data.length; i++){
       let $newTweet = createTweetElement(data[i]);
-      $(".tweets-container").append($newTweet);
+      $('.tweets-container').append($newTweet);
   }
 }
 
@@ -41,61 +41,62 @@ function daysAgo(date){
   return `${days} days ago`
 }
 
+function loadTweets(){
+    $.getJSON({
+      url: 'http://localhost:8080/tweets',
+      method: 'GET',
+      success: function (data) {
+        renderTweets(data);
+        console.log('Success!');
+      }
+    });
+  }
 
-$(document).ready($(function() {
-  $.getJSON({
+
+function postTweet(tweetText) {
+  $.post({
     url: 'http://localhost:8080/tweets',
-    method: 'GET',
-    data: {get_param: 'value'},
-    success: function (data) {
-      renderTweets(data);
-      console.log('Success!');
-    }
-  });
+    method: 'POST',
+    data: {text: tweetText},
+    success: loadTweets
+  })
+}
 
-    let $form = $('.tweet-form');
-    $form.on('submit', function (event) {
-      event.preventDefault();
-      let tweetText = $('textarea').val();
+function submitTweetHandler(event) {
+  event.preventDefault();
+  let tweetText = $('textarea').val();
+  if(!($('.error').css('display') === 'none')){
+    $('.error').slideUp();
+  }
 
-      if(!($(".error").css("display") === "none")){
-        $(".error").slideUp();
-      }
-
-          if(tweetText.length > 140){
-          $(".error").slideDown("slow", function(){
-            document.querySelector(".error").innerHTML = "Your tweet is too long."
-          })
-
-      } else if(tweetText.length <= 0){
-          $(".error").slideDown("slow", function(){
-            document.querySelector(".error").innerHTML = "Your tweet seems empty, try again!"
-          })
-
-      }  else {
-          console.log('Submiting tweet...');
-          $.post({
-            url: 'http://localhost:8080/tweets',
-            method: 'POST',
-            data: {text: tweetText},
-            success: function(data){
-              $('.newTweet').after(createTweetElement(data));
-              $('.container').text
-            }
-
-          })
-          $("textarea").val('');
-          $(".counter").val(140);
-      }
-});
-
-   $('.compose-button').click(function(){
-        $('.new-tweet').toggle('fast');
-         $('textArea').select();
+  if(tweetText.length > 140) {
+    $('.error').slideDown('slow', function(){
+      document.querySelector('.error').innerHTML = 'Your tweet is too long...'
     })
 
-}))
+  } else if(tweetText.length <= 0){
+      $('.error').slideDown('slow', function(){
+        $(this).text('Your tweet seems empty, try again!')
+    })
 
+  } else {
+      console.log('Submiting tweet...');
+      postTweet(tweetText)
+      $('textarea').val('');
+      $('.counter').val(140);
+    }
+}
+
+function toggleCompose() {
+  $('.new-tweet').toggle('fast');
+  $('textArea').select();
+}
+
+$(document).ready($(function() {
+  loadTweets()
+  $('.tweet-form').on('submit', submitTweetHandler);
+  $('.compose-button').click(toggleCompose);
+}));
 
 
 
