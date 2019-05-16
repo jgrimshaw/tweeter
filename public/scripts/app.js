@@ -1,13 +1,18 @@
 
+function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
 function createTweetElement (data){
     let username = data.user.name;
     let avatar = data.user.avatars.small;
     let userId = data.user.handle;
-    let tweetText = data.content.text;
-    let time = data.created_at;
+    let tweetText = escape(data.content.text);
+    let time = daysAgo(data.created_at);
 
-    let $tweet = $(".tweets-container").append(`
-
+    let $tweet = `
       <article class="tw-article">
         <header class="tw-header">
           <img class="tw-avatar" src=${avatar}>
@@ -20,28 +25,55 @@ function createTweetElement (data){
           <span class="icons"><i class="fas fa-flag">&nbsp</i><i class="fas fa-retweet">&nbsp</i><i class="fas fa-heart"></i><div>
         </footer>
       </article>
-
-  `);
+  `;
   return $tweet;
 }
 
 function renderTweets(data){
   for(let i = 0; i < data.length; i++){
-      let $newTweet = createTweetElement(data[i]).text;
+      let $newTweet = createTweetElement(data[i]);
       $(".tweets-container").append($newTweet);
   }
 }
 
+function daysAgo(date){
+  let days = Math.ceil((Date.now() - date) / 86400000);
+  return `${days} days ago`
+}
+
+
 $(document).ready($(function() {
+  $.getJSON({
+    url: 'http://localhost:8080/tweets',
+    method: 'GET',
+    data: {get_param: 'value'},
+    success: function (data) {
+      renderTweets(data);
+      console.log('Success!');
+    }
+  });
+
     let $form = $('.tweet-form');
     $form.on('submit', function (event) {
       event.preventDefault();
       let tweetText = $('textarea').val();
-      console.log(tweetText.length);
-      if( tweetText.length > 140 || tweetText.length <= 0){
-          alert("Your tweet is too long or too short!");
-      } else {
-          console.log('submiting tweet...');
+
+      if(!($(".error").css("display") === "none")){
+        $(".error").slideUp();
+      }
+
+          if(tweetText.length > 140){
+          $(".error").slideDown("slow", function(){
+            document.querySelector(".error").innerHTML = "Your tweet is too long."
+          })
+
+      } else if(tweetText.length <= 0){
+          $(".error").slideDown("slow", function(){
+            document.querySelector(".error").innerHTML = "Your tweet seems empty, try again!"
+          })
+
+      }  else {
+          console.log('Submiting tweet...');
           $.post({
             url: 'http://localhost:8080/tweets',
             method: 'POST',
@@ -50,17 +82,25 @@ $(document).ready($(function() {
               $('.newTweet').after(createTweetElement(data));
               $('.container').text
             }
+
           })
+          $("textarea").val('');
+          $(".counter").val(140);
       }
 });
 
-$.getJSON({
-  url: 'http://localhost:8080/tweets',
-  method: 'GET',
-  data: {get_param: 'value'},
-  success: function (data) {
-  renderTweets(data);
-  console.log('Success!');
-  }
-  });
+   $('.compose-button').click(function(){
+        $('.new-tweet').toggle('fast');
+         $('textArea').select();
+    })
+
 }))
+
+
+
+
+
+
+
+
+

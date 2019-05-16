@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
      <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+      <!-- App JS -->
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Character counter JS -->
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
 
   </head>
 
@@ -21,20 +25,22 @@
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
+      <div>
       <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      </div>
       <button class="compose-button"><i class="fas fa-edit">&nbsp</i>Compose</button>
     </nav>
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <!-- new tweet -->
-     <section class="new-tweet">
+     <section class="new-tweet" style="display: none;">
        <h2>Compose Tweet</h2>
        <form class="tweet-form" action="/tweets" method="POST">
-         <textarea name="text" placeholder="What are you humming about?"></textarea>
+         <textarea id="textarea" name="text" placeholder="What are you humming about?"></textarea>
+         <div class='error' hidden='true'></div>
          <input type="submit" value="Tweet">
-         <output>140</output>
+         <output class="counter">140</output>
        </form>
       </section>
       <br>
@@ -43,9 +49,6 @@
 <section class="tweets-container"></section>
 
 
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <!-- Character counter JS -->
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
   </body>
 </html>
