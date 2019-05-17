@@ -53,7 +53,6 @@ function loadTweets(){
   });
 }
 
-
 function postTweet(tweetText) {
   $.post({
     url: 'http://localhost:8080/tweets',
@@ -71,12 +70,12 @@ function submitTweetHandler(event) {
   }
 
   if(tweetText.length > 140) {
-    $('.error').slideDown('slow', function(){
+    $('.error').slideDown('fast', function(){
       document.querySelector('.error').innerHTML = 'Your tweet is too long...'
     })
 
   } else if(tweetText.length <= 0){
-      $('.error').slideDown('slow', function(){
+      $('.error').slideDown('fast', function(){
         $(this).text('Your tweet seems empty, try again!')
     })
 

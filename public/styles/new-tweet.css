@@ -88,6 +88,13 @@ output {
   opacity: 1;
 }
 
+.error {
+  padding: 8px;
+  margin-bottom: 10px;
+  color: white;
+  background-color: darkred;
+}
+
 
 
 
