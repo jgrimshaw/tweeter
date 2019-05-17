@@ -42,7 +42,7 @@ function daysAgo(date){
 }
 
 function loadTweets(){
-    $.getJSON({
+    $.get({
       url: 'http://localhost:8080/tweets',
       method: 'GET',
       success: function (data) {
