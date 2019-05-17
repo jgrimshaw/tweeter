@@ -97,11 +97,3 @@ $(document).ready($(function() {
   $('.tweet-form').on('submit', submitTweetHandler);
   $('.compose-button').click(toggleCompose);
 }));
-
-
-
-
-
-
-
-
