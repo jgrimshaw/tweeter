@@ -1,6 +1,6 @@
 
 function escape(str) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
 }
@@ -30,9 +30,10 @@ function createTweetElement (data){
 }
 
 function renderTweets(data){
+  $('.tweets-container').empty();
   for(let i = 0; i < data.length; i++){
-      let $newTweet = createTweetElement(data[i]);
-      $('.tweets-container').append($newTweet);
+    let $newTweet = createTweetElement(data[i]);
+    $('.tweets-container').append($newTweet);
   }
 }
 
@@ -42,15 +43,15 @@ function daysAgo(date){
 }
 
 function loadTweets(){
-    $.get({
-      url: 'http://localhost:8080/tweets',
-      method: 'GET',
-      success: function (data) {
-        renderTweets(data);
-        console.log('Success!');
+  $.get({
+    url: 'http://localhost:8080/tweets',
+    method: 'GET',
+    success: function (data) {
+      console.log('Success!', data);
+      renderTweets(data);
       }
-    });
-  }
+  });
+}
 
 
 function postTweet(tweetText) {

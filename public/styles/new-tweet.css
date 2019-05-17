@@ -67,6 +67,7 @@ output {
 
 .tw-p {
   padding: 10px;
+  overflow-wrap: break-word;
 }
 
 .tw-footer {

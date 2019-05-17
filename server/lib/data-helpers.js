@@ -12,10 +12,9 @@ module.exports = function makeDataHelpers(db) {
           if (err) {
             throw err;
           }
-          const sortNewestFirst = (a, b) => a.created_at - b.created_at;
+          const sortNewestFirst = (a, b) => b.created_at - a.created_at;
           callback(null, tweets.sort(sortNewestFirst));
         });
-
     }
   }
 }
