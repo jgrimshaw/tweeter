@@ -1,6 +1,6 @@
 # Tweeter Project
 
-Tweeter is a sigle-page AJAX-based Twitter clone built with front-end HTML5 & CSS, JavaScript and jQuery, and back-end NodeJS, Express and MongoDB.
+Tweeter is a single-page AJAX-based Twitter clone built with front-end HTML5 & CSS, JavaScript and jQuery, and back-end NodeJS, Express and MongoDB.
 
 ## Features
 
